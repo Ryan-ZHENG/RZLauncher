@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="zheng.ryan.rzlauncher.activity.LauncherActivity">
-
-
-</RelativeLayout>
+    android:orientation="horizontal"
+    tools:context="zheng.ryan.rzlauncher.activity.LauncherActivity"
+    >
+    <include android:id="@+id/section_navigation" layout="@layout/navigation_menu" />
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/section_top" layout="@layout/section_top" />
+        <include
+            android:id="@+id/section_workspace" layout="@layout/section_workspace"/>
+    </LinearLayout>
+</FrameLayout>

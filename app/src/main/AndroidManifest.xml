@@ -11,11 +11,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.LauncherActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:excludeFromRecents="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
