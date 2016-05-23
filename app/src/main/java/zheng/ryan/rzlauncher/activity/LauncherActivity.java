@@ -54,6 +54,7 @@ public class LauncherActivity extends Activity {
 
     private void initView() {
         mProgressbar = findViewById(R.id.progressbar);
+        mProgressbar.setVisibility(View.VISIBLE);
         mWorkspaceLayout = (LinearLayout)findViewById(R.id.section_workspace_page);
     }
 
@@ -94,6 +95,11 @@ public class LauncherActivity extends Activity {
         mIndex = mIndex == 0 ? mFragments.size() - 1 : mIndex - 1;
         mTransaction.replace(R.id.section_workspace_page, mFragments.get(mIndex));
         mTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        //TODO - Implements this
     }
 
     /********************************Inner Class Begin*********************************/

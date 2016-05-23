@@ -20,7 +20,6 @@ public class LauncherController {
 
     public void prepare(LauncherActivity context) {
         this.mContext = context;
-        mModel = LauncherModel.getInstance();
-        mModel.init(context);
+        mModel = LauncherModel.init(context);
     }
 }
