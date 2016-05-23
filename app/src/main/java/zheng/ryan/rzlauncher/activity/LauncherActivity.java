@@ -6,10 +6,10 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -24,11 +24,10 @@ public class LauncherActivity extends Activity {
     private static final String TAG = "LauncherActivity";
     public static final int LOADER_TASK_COMPLETED = 1235;
     private LauncherController mController;
-    private View mWorkspacePage;
     private ArrayList<LauncherPageFragment> mFragments;
     private FragmentManager mFragmentManager;
     private FragmentTransaction mTransaction;
-    private View mProgressbar;
+    private ProgressBar mProgressbar;
     private LinearLayout mWorkspaceLayout;
     private static int mIndex = 0;
 
@@ -49,11 +48,11 @@ public class LauncherActivity extends Activity {
     }
 
     private void initListener() {
-        mWorkspaceLayout.setOnTouchListener(new FragmentSwapListener());
+        mWorkspaceLayout.setOnGenericMotionListener(new MotionListener());
     }
 
     private void initView() {
-        mProgressbar = findViewById(R.id.progressbar);
+        mProgressbar = (ProgressBar) findViewById(R.id.progressbar);
         mProgressbar.setVisibility(View.VISIBLE);
         mWorkspaceLayout = (LinearLayout)findViewById(R.id.section_workspace_page);
     }
@@ -78,8 +77,8 @@ public class LauncherActivity extends Activity {
         mTransaction = mFragmentManager.beginTransaction();
         mTransaction.replace(R.id.section_workspace_page, mFragments.get(mIndex));
         mTransaction.commit();
-        mProgressbar.setVisibility(View.GONE);
         initListener();
+        mProgressbar.setVisibility(View.GONE);
     }
 
 
@@ -115,27 +114,15 @@ public class LauncherActivity extends Activity {
         }
     }
 
-    class FragmentSwapListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {
-
+    private class MotionListener implements View.OnGenericMotionListener {
         @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            if((e1.getX() - e2.getX()) > 30){
-                goToNextPage();
+        public boolean onGenericMotion(View v, MotionEvent event) {
+            if(event.getAction() == MotionEvent.ACTION_MOVE){
+                //TODO - Implements move event
                 return true;
             }
-            if((e1.getX() - e2.getX()) < -30){
-                goToPrevPage();
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            return false;
         }
     }
-
     /********************************Inner Class End*********************************/
 
 }

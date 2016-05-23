@@ -46,7 +46,7 @@ public class LauncherLoader {
         int taskMode = mTaskQueue.removeFirst();
         int index = checkVacancy();
         if(index!=-1){
-            mThreadPool[index].run(taskMode);
+            mThreadPool[index].start(taskMode);
         }else{
             //TODO - Fix this later
         }
@@ -66,16 +66,16 @@ public class LauncherLoader {
     }
     /********************************Inner Class Begin*********************************/
 
-    private class LoaderThread implements Runnable{
+    private class LoaderThread extends Thread{
         private boolean isRunning = false;
         private int mTask = -1;
         public LoaderThread() {
         }
 
-        public void run(int task) {
+        public void start(int task) {
             isRunning = true;
             mTask = task;
-            run();
+            start();
         }
 
         private void notifyAppInfosChanged() {
