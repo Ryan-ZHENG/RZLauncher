@@ -7,6 +7,7 @@
     android:orientation="horizontal"
     tools:context="zheng.ryan.rzlauncher.activity.LauncherActivity"
     >
+
     <include android:id="@+id/section_navigation" layout="@layout/navigation_menu" />
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="match_parent"

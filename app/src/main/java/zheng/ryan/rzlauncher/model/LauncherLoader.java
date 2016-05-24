@@ -73,9 +73,11 @@ public class LauncherLoader {
         }
 
         public void start(int task) {
-            isRunning = true;
-            mTask = task;
-            start();
+            if(!isRunning){
+                isRunning = true;
+                mTask = task;
+                start();
+            }
         }
 
         private void notifyAppInfosChanged() {
